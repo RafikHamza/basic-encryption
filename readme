@@ -1,0 +1,67 @@
+# Learn Encryption Basics
+
+An interactive educational platform for learning about basic encryption algorithms.
+
+## Features
+
+- **Interactive Learning**: Clear explanations of Caesar, XOR, and Vigenère ciphers with visual examples
+- **Practice Tool**: Encrypt and decrypt messages using different algorithms
+- **Knowledge Quiz**: Test your understanding with interactive quizzes
+- **Leaderboard**: Track your progress and compare with other learners
+- **User Accounts**: Save your history and quiz results
+
+## Algorithms Covered
+
+1. **Caesar Cipher**: A substitution cipher where each letter is shifted a fixed number of positions in the alphabet.
+2. **XOR Cipher**: A cipher that applies the XOR logical operation between plaintext bits and key bits.
+3. **Vigenère Cipher**: A method of encrypting text using a series of Caesar ciphers with different shift values based on a keyword.
+
+## Setup Instructions
+
+1. Fork this repository
+2. Enable GitHub Pages:
+   - Go to repository Settings
+   - Navigate to "Pages" section
+   - Select "main" branch as the source
+   - Click Save
+3. Visit `https://<your-username>.github.io/basic-encryption/`
+
+## Local Development
+
+To run the project locally:
+
+```bash
+# Clone the repository
+git clone https://github.com//basic-encryption.git
+
+# Navigate to the project directory
+cd basic-encryption
+
+# Open in browser
+# Simply open index.html in your browser
+# Or use a local server:
+python -m http.server
+```
+
+## Browser Support
+
+The application uses modern web features including:
+- IndexedDB for storage
+- ES6+ JavaScript
+- Modern CSS features
+
+Compatible with all modern browsers (Chrome, Firefox, Safari, Edge).
+
+## Contributing
+
+Contributions are welcome! If you'd like to add features or fix issues:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
