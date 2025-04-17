@@ -140,16 +140,14 @@ XOR:    00001010 → &#10; (control char)
         <div id="question-container">
           <p id="question-text">Question will appear here</p>
           <div id="answer-buttons" class="btn-grid">
-            <button class="answer-btn">Answer 1</button>
-            <button class="answer-btn">Answer 2</button>
-            <button class="answer-btn">Answer 3</button>
-            <button class="answer-btn">Answer 4</button>
+            <!-- Buttons will be added dynamically -->
           </div>
         </div>
         <div class="controls">
-          <button id="next-btn" class="next-btn">Next Question</button>
+          <button id="next-btn" class="next-btn btn">Next Question</button>
         </div>
-        <div id="quiz-results">
+        <div id="quiz-results" style="display: none;">
+          <h3>Quiz Complete!</h3>
           <p>Your score: <span id="score-display">0</span>/10</p>
         </div>
       </div>
