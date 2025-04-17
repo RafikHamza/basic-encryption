@@ -41,72 +41,265 @@
   </header>
 
   <main>
-    <!-- Learn Section -->
-    <section id="learn-section" class="active-section">
-      <h2>Encryption Basics</h2>
+  <section id="learn-section" class="active-section">
+    <h2>Encoding and Encryption Fundamentals</h2>
+    
+    <div class="intro-container">
+      <h3>Understanding the Basics</h3>
+      <p>Before diving into encryption, it's important to understand the difference between encoding and encryption:</p>
       
-      <div class="algo-container">
-        <h3>Caesar Cipher</h3>
-        <div class="definition-box">
-          <p>A substitution cipher where each letter is shifted a fixed number of positions in the alphabet.</p>
-        </div>
-        
+      <div class="definition-box">
+        <h4>Encoding vs. Encryption</h4>
+        <p><strong>Encoding:</strong> A process of converting data from one format to another without any secret key. Anyone who knows the encoding scheme can decode the information. Examples include Base64, ASCII, and UTF-8.</p>
+        <p><strong>Encryption:</strong> A process that uses algorithms and keys to convert readable data (plaintext) into an unreadable format (ciphertext). Only those with the correct key can decrypt the information back to plaintext.</p>
+      </div>
+    </div>
+  
+    <div class="algo-container">
+      <h3>Common Encoding Methods</h3>
+      
+      <div class="encoding-box">
+        <h4>ASCII Encoding</h4>
+        <p>American Standard Code for Information Interchange (ASCII) maps characters to numerical values.</p>
         <div class="example-box">
-          <h4>Example:</h4>
-          <p>Plaintext: <strong>HELLO</strong>, Key: <strong>3</strong></p>
-          <p>Ciphertext: <strong>KHOOR</strong></p>
-          <div class="visual-aid">
-            <div class="alphabet-row">
-              <span class="letter">A</span>
-              <span class="letter">B</span>
-              <span class="letter">C</span>
-              <span class="letter">D</span>
-              <span class="letter">E</span>
-              <span class="letter highlight">F</span>
-              <span class="letter">...</span>
+          <p>Example: The letter 'A' is represented as the decimal value 65 (binary 01000001)</p>
+          <table class="encoding-table">
+            <tr>
+              <th>Character</th>
+              <th>ASCII (Decimal)</th>
+              <th>Binary</th>
+            </tr>
+            <tr>
+              <td>A</td>
+              <td>65</td>
+              <td>01000001</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>66</td>
+              <td>01000010</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>67</td>
+              <td>01000011</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <div class="encoding-box">
+        <h4>Base64 Encoding</h4>
+        <p>A binary-to-text encoding scheme that represents binary data in an ASCII string format.</p>
+        <div class="example-box">
+          <p>Example: The text "Hello" in Base64 is "SGVsbG8="</p>
+          <p>Base64 is often used for transmitting binary data through text-based systems.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="encryption-title">
+      <h3>Encryption Algorithms</h3>
+      <p>Let's explore three fundamental encryption methods that form the basis of modern cryptography.</p>
+    </div>
+    
+    <div class="algo-container">
+      <h3>Caesar Cipher</h3>
+      <div class="definition-box">
+        <p>A substitution cipher where each letter is shifted a fixed number of positions in the alphabet. It's named after Julius Caesar, who used it to communicate with his generals.</p>
+        <p><strong>Security Level:</strong> Very low (easily broken)</p>
+        <p><strong>Key:</strong> A single number representing the shift value (1-25)</p>
+      </div>
+      
+      <div class="example-box">
+        <h4>How It Works:</h4>
+        <p>With a shift of 3:</p>
+        <ul>
+          <li>A → D</li>
+          <li>B → E</li>
+          <li>C → F</li>
+          <li>...</li>
+          <li>Z → C</li>
+        </ul>
+        
+        <h4>Example:</h4>
+        <p>Plaintext: <strong>HELLO</strong>, Key: <strong>3</strong></p>
+        <p>H (shift 3) → K</p>
+        <p>E (shift 3) → H</p>
+        <p>L (shift 3) → O</p>
+        <p>L (shift 3) → O</p>
+        <p>O (shift 3) → R</p>
+        <p>Ciphertext: <strong>KHOOR</strong></p>
+        
+        <div class="visual-aid">
+          <p>Visual Representation of Shifting:</p>
+          <div class="alphabet-wheel">
+            <div class="plaintext-row">
+              A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
             </div>
-            <div class="alphabet-row">
-              <span class="letter highlight">A</span>
-              <span class="letter">B</span>
-              <span class="letter">C</span>
-              <span class="letter">...</span>
+            <div class="ciphertext-row">
+              D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
             </div>
           </div>
         </div>
       </div>
       
-      <div class="algo-container">
-        <h3>XOR Cipher</h3>
-        <div class="definition-box">
-          <p>A cipher that applies the XOR logical operation between plaintext bits and key bits.</p>
-        </div>
-        
-        <div class="example-box">
-          <h4>Example:</h4>
-          <p>Plaintext: <strong>ABC</strong>, Key: <strong>KEY</strong></p>
-          <p>Binary XOR operation shown below:</p>
-          <pre>
-A (65): 01000001
-K (75): 01001011
-XOR:    00001010 → &#10; (control char)
-          </pre>
-        </div>
+      <div class="weakness-box">
+        <h4>Vulnerabilities:</h4>
+        <p>The Caesar cipher can be broken by:</p>
+        <ul>
+          <li>Brute force - trying all 25 possible shifts</li>
+          <li>Frequency analysis - analyzing patterns of letter occurrences</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="algo-container">
+      <h3>XOR Cipher</h3>
+      <div class="definition-box">
+        <p>A cipher that applies the XOR (exclusive OR) logical operation between plaintext bits and key bits. XOR is a binary operation that outputs true only when inputs differ.</p>
+        <p><strong>Security Level:</strong> Medium (when used with proper key management)</p>
+        <p><strong>Key:</strong> A binary sequence (often represented as text)</p>
       </div>
       
-      <div class="algo-container">
-        <h3>Vigenère Cipher</h3>
-        <div class="definition-box">
-          <p>A method of encrypting text using a series of Caesar ciphers with different shift values based on a keyword.</p>
-        </div>
+      <div class="example-box">
+        <h4>How It Works:</h4>
+        <p>XOR Truth Table:</p>
+        <table class="xor-table">
+          <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>A XOR B</th>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+          </tr>
+        </table>
         
-        <div class="example-box">
-          <h4>Example:</h4>
-          <p>Plaintext: <strong>HELLO</strong>, Key: <strong>KEY</strong></p>
-          <p>K shifts by 10, E shifts by 4, Y shifts by 24</p>
-          <p>Result: <strong>RIJVS</strong></p>
-        </div>
+        <h4>Example:</h4>
+        <p>Plaintext: <strong>ABC</strong>, Key: <strong>KEY</strong></p>
+        <p>Step 1: Convert to ASCII numbers</p>
+        <pre>
+  A = 65, K = 75
+  B = 66, E = 69
+  C = 67, Y = 89
+        </pre>
+        <p>Step 2: Convert to binary and XOR</p>
+        <pre>
+  A (65): 01000001
+  K (75): 01001011
+  XOR:    00001010 → Value 10 (control character)
+  
+  B (66): 01000010
+  E (69): 01000101
+  XOR:    00000111 → Value 7 (control character)
+  
+  C (67): 01000011
+  Y (89): 01011001
+  XOR:    00011010 → Value 26 (control character)
+        </pre>
       </div>
-    </section>
+      
+      <div class="security-note">
+        <h4>Important Security Note:</h4>
+        <p>XOR cipher with a repeating key (like a single word) is vulnerable to frequency analysis. For proper security, the key should be:</p>
+        <ul>
+          <li>As long as the plaintext (one-time pad)</li>
+          <li>Truly random</li>
+          <li>Used only once</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="algo-container">
+      <h3>Vigenère Cipher</h3>
+      <div class="definition-box">
+        <p>A polyalphabetic substitution cipher that uses a series of Caesar ciphers with different shift values determined by a keyword. It was considered unbreakable for centuries.</p>
+        <p><strong>Security Level:</strong> Low-Medium (stronger than Caesar but still vulnerable)</p>
+        <p><strong>Key:</strong> A word or phrase that determines the shift pattern</p>
+      </div>
+      
+      <div class="example-box">
+        <h4>How It Works:</h4>
+        <p>1. Repeat the keyword to match the length of the plaintext</p>
+        <p>2. For each letter in the plaintext:</p>
+        <ul>
+          <li>Find the corresponding letter in the key</li>
+          <li>Use the position value of the key letter (A=0, B=1, etc.) as the shift amount</li>
+          <li>Apply a Caesar shift with that amount</li>
+        </ul>
+        
+        <h4>Example:</h4>
+        <p>Plaintext: <strong>HELLO</strong>, Key: <strong>KEY</strong></p>
+        <p>Step 1: Repeat key to match plaintext length</p>
+        <pre>
+  Plaintext: H E L L O
+  Key:       K E Y K E
+        </pre>
+        <p>Step 2: Apply shifts based on key letter positions</p>
+        <pre>
+  K = position 10 (shift 10)
+  E = position 4 (shift 4)
+  Y = position 24 (shift 24)
+  K = position 10 (shift 10)
+  E = position 4 (shift 4)
+        </pre>
+        <p>Step 3: Apply the shifts</p>
+        <pre>
+  H + shift 10 = R
+  E + shift 4 = I
+  L + shift 24 = J
+  L + shift 10 = V
+  O + shift 4 = S
+        </pre>
+        <p>Ciphertext: <strong>RIJVS</strong></p>
+      </div>
+      
+      <div class="visual-aid">
+        <h4>Vigenère Table:</h4>
+        <p>A Vigenère table or square is a tool used to encrypt and decrypt messages with the Vigenère cipher:</p>
+        <img src="/api/placeholder/400/320" alt="Vigenère Table Placeholder">
+        <p>To encrypt: Find the row labeled with the plaintext letter, then the column labeled with the key letter. The intersection gives the ciphertext letter.</p>
+      </div>
+      
+      <div class="weakness-box">
+        <h4>Vulnerabilities:</h4>
+        <p>The Vigenère cipher can be broken through:</p>
+        <ul>
+          <li>Kasiski examination - finding repeated sequences in the ciphertext</li>
+          <li>Determining the key length and applying frequency analysis</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="resources-container">
+      <h3>What's Next?</h3>
+      <p>Now that you understand the basics, you can:</p>
+      <ul>
+        <li>Practice encrypting and decrypting messages in the Practice section</li>
+        <li>Test your knowledge with our interactive Quiz</li>
+        <li>Explore more advanced encryption concepts like symmetric vs. asymmetric encryption</li>
+      </ul>
+      <p>Remember: These historical ciphers are fundamental to understanding modern cryptography, but they are not secure for sensitive information in today's digital world.</p>
+    </div>
+  </section>
 
     <!-- Practice Section -->
     <section id="practice-section">
