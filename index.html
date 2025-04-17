@@ -301,558 +301,574 @@
     </div>
   </section>
 
-    <section id="practice-section">
-      <h2>Practice Encryption</h2>
+  <section id="practice-section">
+    <h2>Practice Encryption</h2>
+    
+    <div class="practice-intro">
+      <p>Apply what you've learned by encrypting and decrypting messages using different algorithms. Try the examples below and test your understanding!</p>
+    </div>
+  
+    <!-- Interactive Practice Tool -->
+    <div class="panel" id="cipher-panel">
+      <select id="algo-select">
+        <option value="caesar">Caesar Cipher</option>
+        <option value="xor">XOR Cipher</option>
+        <option value="vigenere">Vigenère Cipher</option>
+      </select>
+      <div id="algorithm-description"></div>
+      <textarea id="plaintext" placeholder="Enter text to encrypt..."></textarea>
+      <input id="key-input" placeholder="Enter key...">
+      <div class="button-group">
+        <button id="encrypt-btn">Encrypt</button>
+        <button id="decrypt-btn">Decrypt</button>
+      </div>
+      <textarea id="ciphertext" readonly placeholder="Result will appear here..."></textarea>
+      <button id="save-btn">Save to History</button>
+    </div>
+  
+    <!-- Guided Practices Section -->
+    <div class="guided-practices">
+      <h3>Guided Practice Examples</h3>
+      <p>Try these examples and check your answers. Enter your solution in the provided box and click "Check Answer".</p>
       
-      <div class="practice-intro">
-        <p>Apply what you've learned by encrypting and decrypting messages using different algorithms. Follow the guided examples or create your own!</p>
-      </div>
-    
-      <!-- Interactive Practice Tool -->
-      <div class="panel" id="cipher-panel">
-        <select id="algo-select">
-          <option value="caesar">Caesar Cipher</option>
-          <option value="xor">XOR Cipher</option>
-          <option value="vigenere">Vigenère Cipher</option>
-        </select>
-        <div id="algorithm-description"></div>
-        <textarea id="plaintext" placeholder="Enter text to encrypt..."></textarea>
-        <input id="key-input" placeholder="Enter key...">
-        <div class="button-group">
-          <button id="encrypt-btn">Encrypt</button>
-          <button id="decrypt-btn">Decrypt</button>
-        </div>
-        <textarea id="ciphertext" readonly placeholder="Result will appear here..."></textarea>
-        <button id="save-btn">Save to History</button>
-      </div>
-    
-      <!-- Guided Practices Section -->
-      <div class="guided-practices">
-        <h3>Guided Practice Examples</h3>
-        <p>Try these examples to better understand each encryption method.</p>
-        
-        <!-- Caesar Cipher Examples -->
-        <div class="practice-set">
-          <h4>Caesar Cipher Examples</h4>
-          <div class="accordion">
-            <div class="accordion-item">
-              <div class="accordion-header">Example 1: Basic Shift</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "HELLO" with a shift of 3</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>For each letter, shift 3 positions in the alphabet</li>
-                  <li>H → I → J → K (shift 3)</li>
-                  <li>E → F → G → H (shift 3)</li>
-                  <li>L → M → N → O (shift 3)</li>
-                  <li>L → M → N → O (shift 3)</li>
-                  <li>O → P → Q → R (shift 3)</li>
-                </ol>
-                <p><strong>Result:</strong> "KHOOR"</p>
-                <button class="try-it-btn" data-algo="caesar" data-text="HELLO" data-key="3">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 2: Decryption</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Decrypt "DWWDFN DW GDZQ" with a shift of 3</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>For each letter, shift backwards 3 positions</li>
-                  <li>D → C → B → A (shift -3)</li>
-                  <li>W → V → U → T (shift -3)</li>
-                  <li>And so on...</li>
-                </ol>
-                <p><strong>Result:</strong> "ATTACK AT DAWN"</p>
-                <button class="try-it-btn" data-algo="caesar" data-text="DWWDFN DW GDZQ" data-key="3" data-decrypt="true">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 3: Larger Shift</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "ZEBRA" with a shift of 23</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Z + 23 = ? (Need to wrap around the alphabet)</li>
-                  <li>Z → A → B → ... → W (shift 23)</li>
-                  <li>E + 23 = X (shift 23)</li>
-                  <li>B + 23 = U (shift 23)</li>
-                  <li>R + 23 = O (shift 23)</li>
-                  <li>A + 23 = X (shift 23)</li>
-                </ol>
-                <p><strong>Result:</strong> "WXUOX"</p>
-                <button class="try-it-btn" data-algo="caesar" data-text="ZEBRA" data-key="23">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 4: With Numbers and Spaces</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "MEET ME AT 5PM" with a shift of 7</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Letters shift 7 positions</li>
-                  <li>Numbers and spaces typically remain unchanged</li>
-                  <li>M + 7 = T</li>
-                  <li>E + 7 = L</li>
-                  <li>And so on...</li>
-                </ol>
-                <p><strong>Result:</strong> "TLLA TL HA 5WT"</p>
-                <button class="try-it-btn" data-algo="caesar" data-text="MEET ME AT 5PM" data-key="7">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 5: Breaking Caesar Cipher</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Decrypt "YMNX NX F XJHWJY" without knowing the key</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Try all possible shifts (1-25) until you find readable text</li>
-                  <li>Shift 1: "XLMW MW E WIGVIX"</li>
-                  <li>Shift 2: "WKLV LV D VHFUHW"</li>
-                  <li>...</li>
-                  <li>Shift 5: "THIS IS A SECRET" (readable!)</li>
-                </ol>
-                <p><strong>Result:</strong> The key is 5 and the message is "THIS IS A SECRET"</p>
-                <div class="brute-force-demo">
-                  <select id="bf-shifts">
-                    <option value="1">Shift 1</option>
-                    <option value="2">Shift 2</option>
-                    <option value="3">Shift 3</option>
-                    <option value="4">Shift 4</option>
-                    <option value="5">Shift 5</option>
-                    <!-- Add more options as needed -->
-                  </select>
-                  <div id="bf-result">Result will appear here</div>
+      <!-- Caesar Cipher Examples -->
+      <div class="practice-set">
+        <h4>Caesar Cipher Examples</h4>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">Example 1: Basic Shift</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Encrypt "HELLO" with a shift of 3</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>For each letter, shift 3 positions in the alphabet</li>
+                <li>H → I → J → K (shift 3)</li>
+                <li>E → F → G → H (shift 3)</li>
+                <li>L → M → N → O (shift 3)</li>
+                <li>L → M → N → O (shift 3)</li>
+                <li>O → P → Q → R (shift 3)</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="KHOOR">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">First letter K, last letter R</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <!-- XOR Cipher Examples -->
-        <div class="practice-set">
-          <h4>XOR Cipher Examples</h4>
-          <div class="accordion">
-            <div class="accordion-item">
-              <div class="accordion-header">Example 1: Single Character</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt the letter "A" with key "K" using XOR</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Convert to ASCII: A = 65, K = 75</li>
-                  <li>Convert to binary:
-                    <ul>
-                      <li>A = 01000001</li>
-                      <li>K = 01001011</li>
-                    </ul>
-                  </li>
-                  <li>Perform XOR operation bit by bit:
-                    <pre>
-      01000001 (A)
-    ⊕ 01001011 (K)
-      --------
-      00001010 (result)</pre>
-                  </li>
-                  <li>Convert result back: 00001010 = 10 in decimal (control character)</li>
-                </ol>
-                <p><strong>Result:</strong> ASCII 10 (Line Feed character)</p>
-                <button class="try-it-btn" data-algo="xor" data-text="A" data-key="K">Try it yourself</button>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 2: Decryption</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Decrypt "DWWDFN DW GDZQ" with a shift of 3</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>For each letter, shift backwards 3 positions</li>
+                <li>D → C → B → A (shift -3)</li>
+                <li>W → V → U → T (shift -3)</li>
+                <li>And so on...</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="ATTACK AT DAWN">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">First word is a military action</p>
+                </div>
               </div>
             </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 2: Short Text</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "HELLO" with key "KEY" using XOR</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>The key "KEY" is shorter than the plaintext, so it repeats: "KEYKE"</li>
-                  <li>XOR each character pair:
-                    <pre>
-    H (72) ⊕ K (75) = 19
-    E (69) ⊕ E (69) = 0
-    L (76) ⊕ Y (89) = 21
-    L (76) ⊕ K (75) = 3
-    O (79) ⊕ E (69) = 10</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> A mixture of ASCII values 19, 0, 21, 3, 10 (mostly control characters)</p>
-                <button class="try-it-btn" data-algo="xor" data-text="HELLO" data-key="KEY">Try it yourself</button>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 3: Larger Shift</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Encrypt "ZEBRA" with a shift of 23</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Z + 23 = ? (Need to wrap around the alphabet)</li>
+                <li>Z → A → B → ... → W (shift 23)</li>
+                <li>E + 23 = X (shift 23)</li>
+                <li>B + 23 = U (shift 23)</li>
+                <li>R + 23 = O (shift 23)</li>
+                <li>A + 23 = X (shift 23)</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="WXUOX">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">Remember to wrap around the alphabet when you go past Z</p>
+                </div>
               </div>
             </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 3: XOR Decryption</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Decrypt the result of the previous example using the same key "KEY"</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>XOR is its own inverse. Applying the same key twice returns to the original value</li>
-                  <li>For each encrypted byte, XOR with the corresponding key byte:
-                    <pre>
-    19 ⊕ K (75) = 72 (H)
-    0 ⊕ E (69) = 69 (E)
-    21 ⊕ Y (89) = 76 (L)
-    3 ⊕ K (75) = 76 (L)
-    10 ⊕ E (69) = 79 (O)</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "HELLO" (original message recovered)</p>
-                <button class="try-it-btn" data-algo="xor" data-text="[encrypted bytes]" data-key="KEY" data-decrypt="true">Try it yourself</button>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 4: With Numbers and Spaces</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Encrypt "MEET ME AT 5PM" with a shift of 7</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Letters shift 7 positions</li>
+                <li>Numbers and spaces typically remain unchanged</li>
+                <li>M + 7 = T</li>
+                <li>E + 7 = L</li>
+                <li>And so on...</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="TLLA TL HA 5WT">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">Spaces stay the same, numbers stay the same</p>
+                </div>
               </div>
             </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 4: One-Time Pad</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "ATTACK" with a true one-time pad "RANDOM"</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>XOR each character with the corresponding key character:
-                    <pre>
-    A (65) ⊕ R (82) = 19
-    T (84) ⊕ A (65) = 21
-    T (84) ⊕ N (78) = 14
-    A (65) ⊕ D (68) = 5
-    C (67) ⊕ O (79) = 12
-    K (75) ⊕ M (77) = 6</pre>
-                  </li>
-                  <li>The resulting numbers represent control characters</li>
-                </ol>
-                <p><strong>Note:</strong> A true one-time pad must use a completely random key of the same length as the plaintext and should never be reused.</p>
-                <button class="try-it-btn" data-algo="xor" data-text="ATTACK" data-key="RANDOM">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 5: XOR with Binary Data</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Manually encrypt binary sequence 10101010 with key 11001100</p>
-                <p><strong>Solution:</strong></p>
-                <pre>
-      10101010 (data)
-    ⊕ 11001100 (key)
-      --------
-      01100110 (result)</pre>
-                <p><strong>Result:</strong> 01100110 (binary) = 102 (decimal) = "f" (ASCII)</p>
-                <div class="binary-calculator">
-                  <div class="binary-row">
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                  </div>
-                  <div class="binary-operator">⊕</div>
-                  <div class="binary-row">
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">1</span>
-                    <span class="bin-bit">0</span>
-                    <span class="bin-bit">0</span>
-                  </div>
-                  <div class="binary-result">
-                    <span class="bin-bit result">0</span>
-                    <span class="bin-bit result">1</span>
-                    <span class="bin-bit result">1</span>
-                    <span class="bin-bit result">0</span>
-                    <span class="bin-bit result">0</span>
-                    <span class="bin-bit result">1</span>
-                    <span class="bin-bit result">1</span>
-                    <span class="bin-bit result">0</span>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 5: Breaking Caesar Cipher</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> What is the shift key used to encrypt "YMNX NX F XJHWJY" into readable English?</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Try different shift values and see which produces readable text</li>
+                <li>Shift 1: "XLMW MW E WIGVIX"</li>
+                <li>Shift 2: "WKLV LV D VHFUHW"</li>
+                <li>Continue until you find readable text...</li>
+              </ol>
+              <div class="brute-force-exercise">
+                <div class="shift-controls">
+                  <label>Try shift value: </label>
+                  <input type="number" id="shift-input" min="1" max="25" value="1">
+                  <button id="apply-shift">Apply</button>
+                </div>
+                <div id="shift-result"></div>
+                <div class="practice-validation">
+                  <input type="number" class="answer-input" placeholder="Enter shift key..." data-correct="5" min="1" max="25">
+                  <button class="check-answer-btn">Check Answer</button>
+                  <span class="feedback-message"></span>
+                  <div class="hint-box">
+                    <button class="hint-toggle">Show Hint</button>
+                    <p class="hint-text" style="display: none;">The decrypted message is "THIS IS A SECRET"</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        <!-- Vigenère Cipher Examples -->
-        <div class="practice-set">
-          <h4>Vigenère Cipher Examples</h4>
-          <div class="accordion">
-            <div class="accordion-item">
-              <div class="accordion-header">Example 1: Basic Encryption</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "HELLO" with key "KEY" using Vigenère cipher</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Repeat the key to match plaintext length: "KEYKE"</li>
-                  <li>Convert key letters to shift values: K=10, E=4, Y=24, K=10, E=4</li>
-                  <li>Apply shifts to each plaintext letter:
-                    <pre>
-    H + 10 = R
-    E + 4 = I
-    L + 24 = J (wrapping around the alphabet)
-    L + 10 = V
-    O + 4 = S</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "RIJVS"</p>
-                <button class="try-it-btn" data-algo="vigenere" data-text="HELLO" data-key="KEY">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 2: Decryption</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Decrypt "RIJVS" with key "KEY"</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Repeat the key to match ciphertext length: "KEYKE"</li>
-                  <li>Convert key letters to shift values: K=10, E=4, Y=24, K=10, E=4</li>
-                  <li>Apply reverse shifts to each ciphertext letter:
-                    <pre>
-    R - 10 = H
-    I - 4 = E
-    J - 24 = L (wrapping around the alphabet)
-    V - 10 = L
-    S - 4 = O</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "HELLO"</p>
-                <button class="try-it-btn" data-algo="vigenere" data-text="RIJVS" data-key="KEY" data-decrypt="true">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 3: Longer Message</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "MEETMEATMIDNIGHT" with key "MOON"</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Repeat the key: "MOONMOONMOONMOON"</li>
-                  <li>Convert key letters to shift values: M=12, O=14, O=14, N=13</li>
-                  <li>Apply shifts:
-                    <pre>
-    M + 12 = Y
-    E + 14 = S
-    E + 14 = S
-    T + 13 = G
-    M + 12 = Y
-    E + 14 = S
-    A + 14 = O
-    T + 13 = G
-    M + 12 = Y
-    I + 14 = W
-    D + 14 = R
-    N + 13 = A
-    I + 12 = U
-    G + 14 = U
-    H + 14 = V
-    T + 13 = G</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "YSSGYSOGYWAUVVG"</p>
-                <button class="try-it-btn" data-algo="vigenere" data-text="MEETMEATMIDNIGHT" data-key="MOON">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 4: With Spaces and Punctuation</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "KEEP IT SECRET!" with key "CIPHER"</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Typically, spaces and punctuation remain unchanged</li>
-                  <li>Apply the key only to letters:
-                    <pre>
-    K + C(2) = M
-    E + I(8) = M
-    E + P(15) = T
-    P + H(7) = W
-    (space remains space)
-    I + E(4) = M
-    T + R(17) = K
-    (space remains space)
-    S + C(2) = U
-    E + I(8) = M
-    C + P(15) = R
-    R + H(7) = Y
-    E + E(4) = I
-    T + R(17) = K
-    ! remains !</pre>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "MMTW MK UMRYIK!"</p>
-                <button class="try-it-btn" data-algo="vigenere" data-text="KEEP IT SECRET!" data-key="CIPHER">Try it yourself</button>
-              </div>
-            </div>
-            
-            <div class="accordion-item">
-              <div class="accordion-header">Example 5: Using the Vigenère Table</div>
-              <div class="accordion-content">
-                <p><strong>Task:</strong> Encrypt "DEFEND" with key "BAC" using the Vigenère table</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                  <li>Extend the key to match plaintext: "BACBA"</li>
-                  <li>For each pair of letters, find intersection in the Vigenère table:
-                    <ul>
-                      <li>D (row) + B (column) = E</li>
-                      <li>E (row) + A (column) = E</li>
-                      <li>F (row) + C (column) = H</li>
-                      <li>E (row) + B (column) = F</li>
-                      <li>N (row) + A (column) = N</li>
-                      <li>D (row) + B (column) = E</li>
-                    </ul>
-                  </li>
-                </ol>
-                <p><strong>Result:</strong> "EEHFNE"</p>
-                <div class="vigenere-table-demo">
-                  <div class="vigenere-row">
-                    <div class="row-header">D</div>
-                    <div class="table-cell">D</div>
-                    <div class="table-cell">E</div>
-                    <div class="table-cell">F</div>
-                    <div class="table-cell">...</div>
-                  </div>
-                  <div class="vigenere-column">
-                    <div class="column-header">B</div>
-                    <div class="column-value">1</div>
-                  </div>
-                  <div class="table-result highlighted">E</div>
+      </div>
+      
+      <!-- XOR Cipher Examples -->
+      <div class="practice-set">
+        <h4>XOR Cipher Examples</h4>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">Example 1: Single Character XOR</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Perform XOR operation on the binary values 01000001 (A) and 01001011 (K)</p>
+              <p><strong>Solution Steps:</strong></p>
+              <pre>
+    01000001 (A)
+  ⊕ 01001011 (K)
+    --------
+    ?????????? (Complete this)</pre>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter 8-bit binary result..." data-correct="00001010">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">Remember: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0</p>
                 </div>
-                <button class="try-it-btn" data-algo="vigenere" data-text="DEFEND" data-key="BAC">Try it yourself</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 2: ASCII Value After XOR</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> What decimal ASCII value results from XOR operation between 'H' (72) and 'K' (75)?</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Convert to binary:
+                  <ul>
+                    <li>H (72) = 01001000</li>
+                    <li>K (75) = 01001011</li>
+                  </ul>
+                </li>
+                <li>XOR the binary values</li>
+                <li>Convert result back to decimal</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="number" class="answer-input" placeholder="Enter decimal result..." data-correct="3">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">Only the last 2 bits differ between H and K</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 3: XOR Decryption</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> If "HELLO" encrypted with key "KEY" using XOR gives you certain byte values, what happens when you XOR those encrypted bytes with "KEY" again?</p>
+              <div class="practice-validation">
+                <select class="answer-input" data-correct="original">
+                  <option value="choose">Choose answer...</option>
+                  <option value="original">You get "HELLO" back</option>
+                  <option value="different">You get a different encrypted text</option>
+                  <option value="key">You get "KEY" back</option>
+                  <option value="nothing">You get all zeros</option>
+                </select>
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">XOR has a special mathematical property when applied twice</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 4: One-Time Pad Security</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> For one-time pad encryption using XOR to be perfectly secure, which of the following must be true? (Select all that apply)</p>
+              <div class="practice-validation multianswer">
+                <div class="checkbox-group">
+                  <label><input type="checkbox" value="1" data-correct="true"> The key must be truly random</label>
+                  <label><input type="checkbox" value="2" data-correct="true"> The key must be as long as the message</label>
+                  <label><input type="checkbox" value="3" data-correct="true"> The key must never be reused</label>
+                  <label><input type="checkbox" value="4" data-correct="false"> The key must be a prime number</label>
+                  <label><input type="checkbox" value="5" data-correct="false"> The plaintext must contain only letters</label>
+                </div>
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 5: XOR Bit Manipulation</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Complete the XOR operation below:</p>
+              <div class="binary-grid">
+                <div class="binary-row">
+                  <span class="bit">1</span>
+                  <span class="bit">0</span>
+                  <span class="bit">1</span>
+                  <span class="bit">1</span>
+                  <span class="bit">0</span>
+                  <span class="bit">0</span>
+                  <span class="bit">1</span>
+                  <span class="bit">0</span>
+                </div>
+                <div class="binary-operator">⊕</div>
+                <div class="binary-row">
+                  <span class="bit">0</span>
+                  <span class="bit">1</span>
+                  <span class="bit">1</span>
+                  <span class="bit">1</span>
+                  <span class="bit">0</span>
+                  <span class="bit">1</span>
+                  <span class="bit">0</span>
+                  <span class="bit">1</span>
+                </div>
+              </div>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter 8-bit binary result..." data-correct="11000111">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
               </div>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Challenge Exercises -->
-      <div class="challenge-section">
-        <h3>Challenge Exercises</h3>
-        <p>Test your skills with these more complex examples!</p>
-        
-        <div class="challenge-card">
-          <h4>Challenge 1: Multi-Layered Encryption</h4>
-          <p>Encrypt "SECURE" by first using a Caesar cipher with shift 3, then applying a Vigenère cipher with key "LOCK".</p>
-          <button class="solution-toggle">Show Solution</button>
-          <div class="solution-content" style="display: none;">
-            <p><strong>Step 1:</strong> Caesar cipher with shift 3</p>
-            <p>"SECURE" → "VHFXUH"</p>
-            <p><strong>Step 2:</strong> Vigenère cipher with key "LOCK"</p>
-            <pre>
-    V + L(11) = G
-    H + O(14) = V
-    F + C(2) = H
-    X + K(10) = H
-    U + L(11) = F
-    H + O(14) = V</pre>
-            <p><strong>Final result:</strong> "GVHHFV"</p>
+      <!-- Vigenère Cipher Examples -->
+      <div class="practice-set">
+        <h4>Vigenère Cipher Examples</h4>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">Example 1: Basic Encryption</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Encrypt "HELLO" with key "KEY" using Vigenère cipher</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Repeat the key to match plaintext length: "KEYKE"</li>
+                <li>Convert key letters to shift values: K=10, E=4, Y=24, K=10, E=4</li>
+                <li>Apply shifts to each plaintext letter</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="RIJVS">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">First letter: H + K(10) = ?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 2: Vigenère Decryption</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Decrypt "RIJVS" with key "KEY"</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Repeat the key to match ciphertext length: "KEYKE"</li>
+                <li>Convert key letters to shift values: K=10, E=4, Y=24, K=10, E=4</li>
+                <li>Apply reverse shifts to each ciphertext letter</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter your answer..." data-correct="HELLO">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">First letter: R - K(10) = ?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 3: Key Repetition</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> When encrypting "SECRETMESSAGE" with key "SPY", how many times is the letter 'S' used as part of the key?</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>The key "SPY" repeats to match the plaintext length</li>
+                <li>Line up the key with the plaintext and count 'S' occurrences</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="number" class="answer-input" placeholder="Enter number..." data-correct="5" min="1">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">The key repeats: SPYSPYSPYSPY...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 4: Calculate One Letter</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> In a Vigenère cipher, what letter results from encrypting 'P' with key letter 'D'?</p>
+              <p><strong>Solution Steps:</strong></p>
+              <ol>
+                <li>Convert 'D' to its position value: D = 3</li>
+                <li>Shift 'P' by 3 positions</li>
+              </ol>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter letter..." data-correct="S" maxlength="1">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+                <div class="hint-box">
+                  <button class="hint-toggle">Show Hint</button>
+                  <p class="hint-text" style="display: none;">P + 3 letters = ?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">Example 5: Vigenère Table Usage</div>
+            <div class="accordion-content">
+              <p><strong>Task:</strong> Using a Vigenère table, what letter is at the intersection of row 'M' and column 'F'?</p>
+              <div class="vigenere-table-mini">
+                <p>Vigenère table (abbreviated):</p>
+                <table>
+                  <tr>
+                    <th></th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                    <th>H</th>
+                    <th>...</th>
+                  </tr>
+                  <tr>
+                    <th>A</th>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <th>B</th>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <th>...</th>
+                    <td colspan="9">...</td>
+                  </tr>
+                  <tr>
+                    <th>M</th>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>?</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <th>...</th>
+                    <td colspan="9">...</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="practice-validation">
+                <input type="text" class="answer-input" placeholder="Enter letter..." data-correct="R" maxlength="1">
+                <button class="check-answer-btn">Check Answer</button>
+                <span class="feedback-message"></span>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div class="challenge-card">
-          <h4>Challenge 2: Breaking Vigenère</h4>
-          <p>You receive the message "WVSHZBCP" encrypted with a Vigenère cipher. You suspect the key is a three-letter word. How would you approach decryption?</p>
-          <button class="solution-toggle">Show Solution</button>
-          <div class="solution-content" style="display: none;">
-            <p><strong>Approach:</strong></p>
-            <ol>
-              <li>Try common three-letter keys like "THE", "AND", "KEY", etc.</li>
-              <li>For each potential key, decrypt and check if the result makes sense</li>
-              <li>With key "KEY", the decryption yields "COMPUTER"</li>
-            </ol>
-            <p><strong>Detailed solution with key "KEY":</strong></p>
-            <pre>
-    W - K(10) = M
-    V - E(4) = R
-    S - Y(24) = E
-    H - K(10) = X (not right...)
-    Z - E(4) = V (not making sense...)
-    </pre>
-            <p>Let's try "THE":</p>
-            <pre>
-    W - T(19) = D
-    V - H(7) = O
-    S - E(4) = O
-    H - T(19) = O
-    Z - H(7) = S
-    B - E(4) = X
-    C - T(19) = J
-    P - H(7) = I
-    </pre>
-            <p>Result: "DOOSXJI" (still not making sense)</p>
-            <p>After trying several keys, key "CAT" yields "COMPUTER":</p>
-            <pre>
-    W - C(2) = U
-    V - A(0) = V
-    S - T(19) = Z (not right...)
-    </pre>
-            <p>Continued attempts would eventually find key "KEY" to be correct.</p>
-          </div>
-        </div>
-        
-        <div class="challenge-card">
-          <h4>Challenge 3: XOR File Encryption</h4>
-          <p>How would you encrypt a file using XOR with a password? What are the security considerations?</p>
-          <button class="solution-toggle">Show Solution</button>
-          <div class="solution-content" style="display: none;">
-            <p><strong>Approach:</strong></p>
-            <ol>
-              <li>Convert the password to a byte array</li>
-              <li>Repeat the password bytes to match the file length</li>
-              <li>XOR each file byte with the corresponding password byte</li>
-            </ol>
-            <p><strong>Security considerations:</strong></p>
-            <ul>
-              <li>Password repetition creates patterns that can be exploited</li>
-              <li>Short passwords are vulnerable to brute force attacks</li>
-              <li>If the same password is used for multiple files, cryptanalysis can reveal the key</li>
-              <li>A stronger approach would be to:
-                <ul>
-                  <li>Use a key derivation function to generate a secure key from the password</li>
-                  <li>Use a strong encryption algorithm like AES instead of simple XOR</li>
-                  <li>Include a unique initialization vector (IV) for each encryption</li>
-                </ul>
-              </li>
-            </ul>
+      </div>
+    </div>
+    
+    <!-- Challenge Exercises -->
+    <div class="challenge-section">
+      <h3>Challenge Exercises</h3>
+      <p>Test your understanding with these more complex examples!</p>
+      
+      <div class="challenge-card">
+        <h4>Challenge 1: Multi-Layered Encryption</h4>
+        <p>Encrypt "SECURE" by first using a Caesar cipher with shift 3, then applying a Vigenère cipher with key "LOCK".</p>
+        <div class="practice-validation">
+          <input type="text" class="answer-input" placeholder="Enter final ciphertext..." data-correct="GVHHFV">
+          <button class="check-answer-btn">Check Answer</button>
+          <span class="feedback-message"></span>
+          <div class="hint-box">
+            <button class="hint-toggle">Show Hint</button>
+            <p class="hint-text" style="display: none;">First apply Caesar: SECURE → VHFXUH, then apply Vigenère</p>
           </div>
         </div>
       </div>
       
-      <!-- Real-World Applications -->
-      <div class="real-world-section">
-        <h3>Real-World Applications</h3>
-        <div class="application-card">
-          <h4>Historical: The Caesar Cipher in Military Communications</h4>
-          <p>Julius Caesar used a shift cipher to communicate with his generals. The key was known only to the recipients, making the messages appear as nonsense to interceptors unfamiliar with the system.</p>
-        </div>
-        
-        <div class="application-card">
-          <h4>Modern: XOR in Computer Security</h4>
-          <p>XOR operations are fundamental in many modern encryption algorithms, including AES. They're also used in:</p>
-          <ul>
-            <li>Generating secure random numbers</li>
-            <li>Obfuscating code</li>
-            <li>Creating checksums</li>
-          </ul>
-        </div>
-        
-        <div class="application-card">
-          <h4>Historical: Vigenère in Wartime</h4>
-          <p>The Vigenère cipher was used during the American Civil War by the Confederate States. While it was eventually broken, it provided security for critical communications for some time.</p>
+      <div class="challenge-card">
+        <h4>Challenge 2: Breaking Vigenère</h4>
+        <p>The ciphertext "LXFOPVEFRNHR" was encrypted with a Vigenère cipher using a 3-letter key. You know the plaintext contains the word "CRYPTO". Which of these is most likely the key?</p>
+        <div class="practice-validation">
+          <select class="answer-input" data-correct="KEY">
+            <option value="choose">Choose answer...</option>
+            <option value="THE">THE</option>
+            <option value="KEY">KEY</option>
+            <option value="SPY">SPY</option>
+            <option value="BOX">BOX</option>
+          </select>
+          <button class="check-answer-btn">Check Answer</button>
+          <span class="feedback-message"></span>
+          <div class="hint-box">
+            <button class="hint-toggle">Show Hint</button>
+            <p class="hint-text" style="display: none;">Try working backwards from the known word "CRYPTO" to find what key letters would produce the corresponding ciphertext</p>
+          </div>
         </div>
       </div>
+      
+      <div class="challenge-card">
+        <h4>Challenge 3: Security Analysis</h4>
+        <p>Rank these encryption methods from least secure (1) to most secure (3):</p>
+        <div class="practice-validation">
+          <div class="ranking-exercise">
+            <div class="rank-item">
+              <span class="rank-label">Caesar Cipher:</span>
+              <select class="rank-select" data-correct="1">
+                <option value="0">Select...</option>
+                <option value="1">1 (Least secure)</option>
+                <option value="2">2</option>
+                <option value="3">3 (Most secure)</option>
+              </select>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">Vigenère Cipher:</span>
+              <select class="rank-select" data-correct="2">
+                <option value="0">Select...</option>
+                <option value="1">1 (Least secure)</option>
+                <option value="2">2</option>
+                <option value="3">3 (Most secure)</option>
+              </select>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">XOR One-Time Pad:</span>
+              <select class="rank-select" data-correct="3">
+                <option value="0">Select...</option>
+                <option value="1">1 (Least secure)</option>
+                <option value="2">2</option>
+                <option value="3">3 (Most secure)</option>
+              </select>
+            </div>
+          </div>
+          <button class="check-answer-btn">Check Answer</button>
+          <span class="feedback-message"></span>
+        </div>
+      </div>
+    </div>
     
-      <!-- History Log -->
-      <div class="history" id="history">
-        <h3>Your Encryption History</h3>
-        <ul id="history-list"></ul>
-        <button id="clear-history">Clear History</button>
+    <!-- Real-World Applications -->
+    <div class="real-world-section">
+      <h3>Real-World Applications</h3>
+      <div class="application-card">
+        <h4>Historical: The Caesar Cipher in Military Communications</h4>
+        <p>Julius Caesar used a shift cipher to communicate with his generals. The key was known only to the recipients, making the messages appear as nonsense to interceptors unfamiliar with the system.</p>
       </div>
-    </section>
+      
+      <div class="application-card">
+        <h4>Modern: XOR in Computer Security</h4>
+        <p>XOR operations are fundamental in many modern encryption algorithms, including AES. They're also used in:</p>
+        <ul>
+          <li>Generating secure random numbers</li>
+          <li>Obfuscating code</li>
+          <li>Creating checksums</li>
+        </ul>
+      </div>
+      
+      <div class="application-card">
+        <h4>Historical: Vigenère in Wartime</h4>
+        <p>The Vigenère cipher was used during the American Civil War by the Confederate States. While it was eventually broken, it provided security for critical communications for some time.</p>
+      </div>
+    </div>
+  
+    <!-- History Log -->
+    <div class="history" id="history">
+      <h3>Your Encryption History</h3>
+      <ul id="history-list"></ul>
+      <button id="clear-history">Clear History</button>
+    </div>
 
     <!-- Quiz Section -->
     <section id="quiz-section">
